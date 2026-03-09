@@ -1,0 +1,401 @@
+/* =========================================
+   1. PREMIUM CSS VARIABLES
+   ========================================= */
+   :root {
+    --primary-color: #4f46e5;      /* Modern Indigo */
+    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    --heading-color: #0f172a;      /* Deep Slate */
+    --text-color: #64748b;         /* Muted Slate */
+    --bg-color: #f8fafc;           /* Ultra light gray/blue background */
+    --white: #ffffff;
+    --card-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+    --hover-shadow: 0 30px 60px rgba(79, 70, 229, 0.15);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================
+   2. RESET & GLOBAL STYLES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* =========================================
+   3. ABSTRACT BACKGROUND GLOWS
+   ========================================= */
+.bg-shape {
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+}
+
+.shape-top-left {
+    width: 400px;
+    height: 400px;
+    background: #f5f5f6;
+    top: -150px;
+    left: -150px;
+}
+
+.shape-bottom-right {
+    width: 500px;
+    height: 500px;
+    background: #f3f0f7;
+    bottom: 50px;
+    right: -200px;
+}
+
+/* =========================================
+   4. NAVBAR (GLASSMORPHISM)
+   ========================================= */
+.navbar {
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-logo {
+    font-size: 32px;
+    color: var(--primary-color);
+    background: var(--primary-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.brand-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--heading-color);
+    letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-link {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color);
+}
+
+/* Animated Underline for Nav Links */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--primary-gradient);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.auth-link {
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+.auth-link:hover {
+    color: var(--primary-color);
+}
+
+/* =========================================
+   5. PREMIUM BUTTONS
+   ========================================= */
+.btn {
+    padding: 12px 28px;
+    border-radius: 50px; /* Pill shape buttons */
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.btn-lg {
+    padding: 16px 40px;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: var(--white);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(79, 70, 229, 0.3);
+    color: var(--white);
+}
+
+.btn-outline {
+    background-color: var(--white);
+    border-color: #e2e8f0;
+    color: var(--heading-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   6. HERO SECTION
+   ========================================= */
+.hero-section {
+    padding: 100px 0 120px 0;
+    text-align: center;
+    position: relative;
+}
+
+.hero-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+/* Gradient Text Effect */
+.hero-title span {
+    background: var(--primary-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.hero-action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Floating Animation for Images */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.hero-image img {
+    width: 320px;
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+}
+
+.left-image img { animation-delay: 0s; }
+.right-image img { animation-delay: 3s; width: 350px;}
+
+/* =========================================
+   7. FEATURES SECTION (GLASS CARDS)
+   ========================================= */
+.features-section {
+    padding: 0 0 100px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 40px 30px;
+    border-radius: 24px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(255, 255, 255, 1);
+    transition: var(--transition);
+    text-align: left;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--hover-shadow);
+    background: var(--white);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 25px;
+    transition: var(--transition);
+}
+
+.feature-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+/* Vibrant Icon Colors */
+.wrapper-green { background: #dcfce7; color: #16a34a; }
+.wrapper-blue { background: #dbeafe; color: #2563eb; }
+.wrapper-purple { background: #f3e8ff; color: #9333ea; }
+.wrapper-dark { background: #f1f5f9; color: #475569; }
+
+.card-title {
+    color: var(--heading-color);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.card-desc {
+    font-size: 15px;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* =========================================
+   8. SIMPLE FOOTER
+   ========================================= */
+.footer {
+    border-top: 1px solid #e2e8f0;
+    padding: 40px 0;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-links a {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-socials a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--heading-color);
+}
+
+.footer-socials a:hover {
+    background: var(--primary-gradient);
+    color: var(--white);
+    transform: translateY(-3px);
+}

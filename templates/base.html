@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}Smart Study Hub{% endblock %}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <div class="bg-shape shape-top-left"></div>
+    <div class="bg-shape shape-bottom-right"></div>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            
+            <a href="{{ url_for('home') }}" class="brand-logo">
+                <i class="fa-solid fa-book-open-reader icon-logo"></i>
+                <div class="brand-text">
+                    <span class="brand-title">Smart</span>
+                    <span class="brand-subtitle">Study Hub</span>
+                </div>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Features</a>
+                <a href="#" class="nav-link">Resources</a>
+                <a href="#" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-auth">
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('logout') }}" class="btn btn-outline nav-btn">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="auth-link login-link">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary nav-btn">Register</a>
+                {% endif %}
+            </div>
+
+        </div>
+    </header>
+
+    <main style="min-height: 70vh;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="container flash-messages" style="margin-top: 20px;">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">FAQs</a>
+                <a href="#">Support</a>
+            </div>
+            <div class="footer-socials">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>
