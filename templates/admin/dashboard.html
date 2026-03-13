@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel - Smart Study Hub{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <aside class="sidebar admin-sidebar">
+        <div class="sidebar-user">
+            <img src="https://cdn-icons-png.flaticon.com/512/2206/2206368.png" alt="Admin Profile">
+            <h4>Admin Control</h4>
+            <span>Superuser</span>
+        </div>
+        <nav class="sidebar-menu">
+            <a href="#" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="#"><i class="fa-solid fa-users-gear"></i> Manage Students</a>
+            <a href="#"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Content</a>
+            <a href="#"><i class="fa-solid fa-folder-tree"></i> Categories</a>
+            <a href="#"><i class="fa-solid fa-message"></i> Feedback</a>
+            <a href="#" class="logout-link"><i class="fa-solid fa-power-off"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-header">
+            <h2>Admin <span>Dashboard</span></h2>
+            <p>Monitor and manage all study resources and users.</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon icon-blue"><i class="fa-solid fa-user-graduate"></i></div>
+                <div class="stat-info">
+                    <h3>1,240</h3>
+                    <p>Total Students</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-green"><i class="fa-solid fa-book-bookmark"></i></div>
+                <div class="stat-info">
+                    <h3>450</h3>
+                    <p>Total Notes</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-purple"><i class="fa-solid fa-download"></i></div>
+                <div class="stat-info">
+                    <h3>8.2k</h3>
+                    <p>Downloads</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-actions">
+            <div class="action-card">
+                <h3>Quick Management</h3>
+                <div class="action-buttons">
+                    <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add New Note</button>
+                    <button class="btn btn-outline"><i class="fa-solid fa-user-plus"></i> New Admin</button>
+                </div>
+            </div>
+            
+            <div class="recent-activity">
+                <h3>Pending Content Approval</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <div class="resource-details">
+                            <p class="resource-name">Microprocessor Notes.pdf</p>
+                            <p class="resource-meta">Uploaded by: Prof. Verma</p>
+                        </div>
+                        <div class="admin-btns">
+                            <a href="#" class="btn-approve">Approve</a>
+                            <a href="#" class="btn-reject">Reject</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

@@ -528,7 +528,7 @@ a {
     text-decoration: underline;
 }
 /* =========================================
-   10. DASHBOARD LAYOUT
+   10. STUDENT DASHBOARD LAYOUT
    ========================================= */
 .dashboard-wrapper {
     display: flex;
@@ -674,3 +674,58 @@ a {
 }
 
 .btn-sm:hover { border-color: var(--primary-color); color: var(--primary-color); }
+
+/* =========================================
+   11. ADMIN DASHBOARD SPECIFIC
+   ========================================= */
+.admin-sidebar {
+    background: #0f172a; /* Dark theme for Admin */
+    color: white;
+}
+
+.admin-sidebar .sidebar-user h4, 
+.admin-sidebar .sidebar-menu a {
+    color: #cbd5e1;
+}
+
+.admin-sidebar .sidebar-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.admin-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-approve {
+    background: #dcfce7;
+    color: #16a34a;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btn-reject {
+    background: #fee2e2;
+    color: #ef4444;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.action-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    box-shadow: var(--card-shadow);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}

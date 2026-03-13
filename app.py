@@ -22,6 +22,20 @@ def login():
 def student_dashboard():
     # Note how we point to the file inside the student folder
     return render_template('student/dashboard.html')
+#Admin Dashboard
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    return render_template('admin/dashboard.html')
+
+# manage-sub route
+@app.route('/admin/manage-subjects')
+def manage_subjects():
+    return render_template('admin/manage_sub.html')
+
+#upload route
+@app.route('/admin/upload')
+def upload_content():
+    return render_template('admin/upload.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
