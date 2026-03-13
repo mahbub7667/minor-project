@@ -1,15 +1,27 @@
 from flask import Flask, render_template
 
-# Initialize the Flask application
 app = Flask(__name__)
 
-# Define the route for the main home page
+#Home Page Route
 @app.route('/')
 def home():
-    # Render and return the index.html template
     return render_template('index.html')
 
+#Register Page Route
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+# LOGIN Page Route
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+#Student Dashboard Route
+@app.route('/student/dashboard')
+def student_dashboard():
+    # Note how we point to the file inside the student folder
+    return render_template('student/dashboard.html')
+
 if __name__ == '__main__':
-    # Start the Flask development server
-    print("Server is starting... Check the terminal for the link!")
     app.run(debug=True)

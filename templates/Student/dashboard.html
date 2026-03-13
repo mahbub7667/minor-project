@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard - Smart Study Hub{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <aside class="sidebar">
+        <div class="sidebar-user">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Student Profile">
+            <h4>Mahbub Alam</h4>
+            <span>CSE Student</span>
+        </div>
+        <nav class="sidebar-menu">
+            <a href="#" class="active"><i class="fa-solid fa-gauge"></i> Overview</a>
+            <a href="#"><i class="fa-solid fa-book"></i> My Notes</a>
+            <a href="#"><i class="fa-solid fa-file-pdf"></i> PYQs</a>
+            <a href="#"><i class="fa-solid fa-video"></i> Video Lectures</a>
+            <a href="#"><i class="fa-solid fa-pen-to-square"></i> Quizzes</a>
+            <a href="#" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-header">
+            <h2>Welcome back, <span>Mahbub!</span></h2>
+            <p>Ready to continue your learning journey?</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon icon-blue"><i class="fa-solid fa-file-lines"></i></div>
+                <div class="stat-info">
+                    <h3>12</h3>
+                    <p>Notes Read</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-green"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="stat-info">
+                    <h3>05</h3>
+                    <p>Quizzes Completed</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-purple"><i class="fa-solid fa-clock"></i></div>
+                <div class="stat-info">
+                    <h3>08</h3>
+                    <p>Hours Studied</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h3>Recent Resources</h3>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <div class="resource-details">
+                        <p class="resource-name">Data Structures PYQ 2024</p>
+                        <p class="resource-meta">Added 2 days ago</p>
+                    </div>
+                    <a href="#" class="btn-sm">Download</a>
+                </div>
+                <div class="resource-item">
+                    <i class="fa-solid fa-video"></i>
+                    <div class="resource-details">
+                        <p class="resource-name">Python Flask Tutorial - Part 1</p>
+                        <p class="resource-meta">Added Today</p>
+                    </div>
+                    <a href="#" class="btn-sm">Watch Now</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
