@@ -4,9 +4,23 @@
 
 {% block content %}
 <div class="dashboard-wrapper">
+    
     <aside class="sidebar admin-sidebar">
-        </aside>
-
+        <div class="sidebar-user">
+            <img src="https://cdn-icons-png.flaticon.com/512/2206/2206368.png" alt="Admin Profile">
+            <h4>Admin Control</h4>
+            <span>Superuser</span>
+        </div>
+        <nav class="sidebar-menu">
+            <a href="{{ url_for('admin_dashboard') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="{{ url_for('manage_subjects') }}"><i class="fa-solid fa-folder-tree"></i> Manage Subjects</a>
+            
+            <a href="{{ url_for('upload_content') }}" class="active"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Content</a>
+            
+            <a href="#"><i class="fa-solid fa-message"></i> Feedback</a>
+            <a href="{{ url_for('home') }}" class="logout-link"><i class="fa-solid fa-power-off"></i> Logout</a>
+        </nav>
+    </aside>
     <main class="dashboard-main">
         <header class="dashboard-header">
             <h2>Upload <span>New Resource</span></h2>
@@ -58,7 +72,7 @@
 </div>
 
 <script>
-    // Simple logic to toggle between File and Link
+    // Logic to toggle between File and Link
     document.getElementById('contentType').addEventListener('change', function() {
         const fileArea = document.getElementById('fileUploadArea');
         const linkArea = document.getElementById('linkUploadArea');

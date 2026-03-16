@@ -11,45 +11,53 @@
             <span>CSE Student</span>
         </div>
         <nav class="sidebar-menu">
-            <a href="#" class="active"><i class="fa-solid fa-gauge"></i> Overview</a>
-            <a href="#"><i class="fa-solid fa-book"></i> My Notes</a>
-            <a href="#"><i class="fa-solid fa-file-pdf"></i> PYQs</a>
-            <a href="#"><i class="fa-solid fa-video"></i> Video Lectures</a>
-            <a href="#"><i class="fa-solid fa-pen-to-square"></i> Quizzes</a>
-            <a href="#" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+             <a href="{{ url_for('student_dashboard') }}" class="active"><i class="fa-solid fa-gauge"></i> Overview</a>
+    
+             <a href="{{ url_for('student_resources') }}"><i class="fa-solid fa-book"></i> My Notes</a>
+             <a href="{{ url_for('student_resources') }}"><i class="fa-solid fa-file-pdf"></i> PYQs</a>
+    
+            <a href="{{ url_for('home') }}" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         </nav>
     </aside>
 
     <main class="dashboard-main">
         <header class="dashboard-header">
             <h2>Welcome back, <span>Mahbub!</span></h2>
-            <p>Ready to continue your learning journey?</p>
+             <p>Ready to continue your learning journey?</p>
         </header>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon icon-blue"><i class="fa-solid fa-file-lines"></i></div>
-                <div class="stat-info">
-                    <h3>12</h3>
-                    <p>Notes Read</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon icon-green"><i class="fa-solid fa-circle-check"></i></div>
-                <div class="stat-info">
-                    <h3>05</h3>
-                    <p>Quizzes Completed</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon icon-purple"><i class="fa-solid fa-clock"></i></div>
-                <div class="stat-info">
-                    <h3>08</h3>
-                    <p>Hours Studied</p>
-                </div>
+        <class="stats-grid">
+    
+    <a href="{{ url_for('student_resources') }}" style="text-decoration: none; color: inherit; display: block;">
+        <div class="stat-card">
+            <div class="stat-icon icon-blue"><i class="fa-solid fa-file-lines"></i></div>
+            <div class="stat-info">
+                <h3>12</h3>
+                <p>Notes Read</p>
             </div>
         </div>
+    </a>
 
+    <a href="{{ url_for('student_resources') }}" style="text-decoration: none; color: inherit; display: block;">
+        <div class="stat-card">
+            <div class="stat-icon icon-green"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-info">
+                <h3>05</h3>
+                <p>Quizzes Completed</p>
+            </div>
+        </div>
+    </a>
+
+    <a href="{{ url_for('student_resources') }}" style="text-decoration: none; color: inherit; display: block;">
+        <div class="stat-card">
+            <div class="stat-icon icon-purple"><i class="fa-solid fa-clock"></i></div>
+            <div class="stat-info">
+                <h3>08</h3>
+                <p>Hours Studied</p>
+            </div>
+        </div>
+    </a>
+</div>
         <div class="recent-activity">
             <h3>Recent Resources</h3>
             <div class="resource-list">

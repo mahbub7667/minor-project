@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from database import supabase
 
 app = Flask(__name__)
 
@@ -22,6 +23,13 @@ def login():
 def student_dashboard():
     # Note how we point to the file inside the student folder
     return render_template('student/dashboard.html')
+
+#Student resources route
+@app.route('/student/resources')
+def student_resources():
+   return render_template('student/resources.html')
+
+
 #Admin Dashboard
 @app.route('/admin/dashboard')
 def admin_dashboard():

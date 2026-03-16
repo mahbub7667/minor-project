@@ -11,12 +11,11 @@
             <span>Superuser</span>
         </div>
         <nav class="sidebar-menu">
-            <a href="#" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-            <a href="#"><i class="fa-solid fa-users-gear"></i> Manage Students</a>
-            <a href="#"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Content</a>
-            <a href="#"><i class="fa-solid fa-folder-tree"></i> Categories</a>
+            <a href="{{ url_for('admin_dashboard') }}" class="active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="{{ url_for('manage_subjects') }}"><i class="fa-solid fa-folder-tree"></i> Manage Subjects</a>
+            <a href="{{ url_for('upload_content') }}"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Content</a>
             <a href="#"><i class="fa-solid fa-message"></i> Feedback</a>
-            <a href="#" class="logout-link"><i class="fa-solid fa-power-off"></i> Logout</a>
+            <a href="{{ url_for('home') }}" class="logout-link"><i class="fa-solid fa-power-off"></i> Logout</a>
         </nav>
     </aside>
 
@@ -54,7 +53,7 @@
             <div class="action-card">
                 <h3>Quick Management</h3>
                 <div class="action-buttons">
-                    <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add New Note</button>
+                    <a href="{{ url_for('upload_content') }}" class="btn btn-primary" style="text-decoration: none;"><i class="fa-solid fa-plus"></i> Add New Note</a>
                     <button class="btn btn-outline"><i class="fa-solid fa-user-plus"></i> New Admin</button>
                 </div>
             </div>
@@ -74,6 +73,48 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="recent-activity" style="margin-top: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>Manage Uploaded Resources</h3>
+            </div>
+
+            <div class="table-responsive" style="overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 15px;">
+                <table style="width: 100%; border-collapse: collapse; background: white;">
+                    <thead>
+                        <tr style="background: #f8fafc; text-align: left; border-bottom: 2px solid #edf2f7;">
+                            <th style="padding: 15px;">Title</th>
+                            <th style="padding: 15px;">Type</th>
+                            <th style="padding: 15px;">Subject</th>
+                            <th style="padding: 15px;">Date</th>
+                            <th style="padding: 15px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #edf2f7;">
+                            <td style="padding: 15px; font-weight: 500;">Binary Search Tree.pdf</td>
+                            <td style="padding: 15px;"><span class="badge-pdf">PDF</span></td>
+                            <td style="padding: 15px;">Data Structures</td>
+                            <td style="padding: 15px; color: #64748b;">14 Mar 2026</td>
+                            <td style="padding: 15px;">
+                                <button class="action-btn edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #edf2f7;">
+                            <td style="padding: 15px; font-weight: 500;">Scheduling Algos</td>
+                            <td style="padding: 15px;"><span class="badge-video">VIDEO</span></td>
+                            <td style="padding: 15px;">OS</td>
+                            <td style="padding: 15px; color: #64748b;">12 Mar 2026</td>
+                            <td style="padding: 15px;">
+                                <button class="action-btn edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>

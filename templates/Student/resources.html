@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Resources - Smart Study Hub{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <aside class="sidebar">
+        <div class="sidebar-user">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Student Profile">
+            <h4>Mahbub Alam</h4>
+            <span>CSE Student</span>
+        </div>
+        <nav class="sidebar-menu">
+            <a href="{{ url_for('student_dashboard') }}"><i class="fa-solid fa-gauge"></i> Overview</a>
+            <a href="{{ url_for('student_resources') }}" class="active"><i class="fa-solid fa-book"></i> Study Resources</a>
+            <a href="#"><i class="fa-solid fa-file-pdf"></i> My Downloads</a>
+            <a href="#"><i class="fa-solid fa-pen-to-square"></i> Quizzes</a>
+            <a href="{{ url_for('home') }}" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h2>Study <span>Resources</span></h2>
+                <p>Select a subject to view notes and videos.</p>
+            </div>
+            <div class="filter-box">
+                <select class="btn-sm" style="padding: 10px; border-radius: 10px;">
+                    <option>All Subjects</option>
+                    <option>Data Structures</option>
+                    <option>Operating Systems</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="resources-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px;">
+            
+            <div class="feature-card resource-card">
+                <div class="card-badge pdf-badge">PDF Notes</div>
+                <div class="card-icon wrapper-blue" style="margin-top: 20px;">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <h3 class="card-title">Data Structures - Unit 1</h3>
+                <p class="card-desc">Detailed notes on Arrays, Linked Lists and Stacks.</p>
+                <div class="card-action" style="margin-top: 20px; display: flex; gap: 10px;">
+                    <a href="#" class="btn btn-primary" style="padding: 8px 15px; font-size: 13px;">View PDF</a>
+                    <a href="#" class="btn btn-outline" style="padding: 8px 15px; font-size: 13px;"><i class="fa-solid fa-download"></i></a>
+                </div>
+            </div>
+
+            <div class="feature-card resource-card">
+                <div class="card-badge video-badge">Video Lecture</div>
+                <div class="card-icon wrapper-purple" style="margin-top: 20px;">
+                    <i class="fa-solid fa-circle-play"></i>
+                </div>
+                <h3 class="card-title">Recursion Explained</h3>
+                <p class="card-desc">A 20-minute visual guide to understanding Recursion.</p>
+                <div class="card-action" style="margin-top: 20px;">
+                    <a href="#" class="btn btn-primary" style="padding: 8px 20px; font-size: 13px;">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="feature-card resource-card">
+                <div class="card-badge pdf-badge">PYQ</div>
+                <div class="card-icon wrapper-green" style="margin-top: 20px;">
+                    <i class="fa-solid fa-scroll"></i>
+                </div>
+                <h3 class="card-title">OS Previous Year 2023</h3>
+                <p class="card-desc">Solved question paper for 4th Semester exams.</p>
+                <div class="card-action" style="margin-top: 20px; display: flex; gap: 10px;">
+                    <a href="#" class="btn btn-primary" style="padding: 8px 15px; font-size: 13px;">View PDF</a>
+                    <a href="#" class="btn btn-outline" style="padding: 8px 15px; font-size: 13px;"><i class="fa-solid fa-download"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+{% endblock %}
