@@ -1,89 +1,76 @@
 {% extends "base.html" %}
 
-{% block title %}Upload Content - Admin{% endblock %}
+{% block title %}Upload Resources - Admin{% endblock %}
 
 {% block content %}
-<div class="dashboard-wrapper">
-    
-    <aside class="sidebar admin-sidebar">
-        <div class="sidebar-user">
-            <img src="https://cdn-icons-png.flaticon.com/512/2206/2206368.png" alt="Admin Profile">
-            <h4>Admin Control</h4>
-            <span>Superuser</span>
-        </div>
-        <nav class="sidebar-menu">
-            <a href="{{ url_for('admin_dashboard') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-            <a href="{{ url_for('manage_subjects') }}"><i class="fa-solid fa-folder-tree"></i> Manage Subjects</a>
+<div class="container" style="margin-top: 40px; max-width: 600px;">
+    <h2><i class="fa-solid fa-upload"></i> Upload Resource</h2>
+
+    <div class="auth-card" style="padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <form action="{{ url_for('upload_content') }}" method="POST" enctype="multipart/form-data">
             
-            <a href="{{ url_for('upload_content') }}" class="active"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Content</a>
-            
-            <a href="#"><i class="fa-solid fa-message"></i> Feedback</a>
-            <a href="{{ url_for('home') }}" class="logout-link"><i class="fa-solid fa-power-off"></i> Logout</a>
-        </nav>
-    </aside>
-    <main class="dashboard-main">
-        <header class="dashboard-header">
-            <h2>Upload <span>New Resource</span></h2>
-            <p>Add PDF notes, Video links or Quiz details here.</p>
-        </header>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label>Resource Title</label>
+                <input type="text" name="title" placeholder="e.g., Python Unit 1 Notes" required 
+                       style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
 
-        <div class="auth-card" style="max-width: 800px;">
-            <form action="#" method="POST" enctype="multipart/form-data" class="auth-form">
-                <div class="stats-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
-                    
-                    <div class="form-group">
-                        <label>Select Subject</label>
-                        <select name="subject" class="input-wrapper" style="padding: 14px;">
-                            <option>Data Structures</option>
-                            <option>Operating Systems</option>
-                            <option>Software Engineering</option>
-                        </select>
-                    </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label>Select Subject</label>
+                <select name="subject_id" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    <option value="" disabled selected>-- Choose Subject --</option>
+                    {% for sub in subjects %}
+                        <option value="{{ sub.id }}">{{ sub.subject_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-                    <div class="form-group">
-                        <label>Content Type</label>
-                        <select name="content_type" id="contentType" class="input-wrapper" style="padding: 14px;">
-                            <option value="pdf">PDF Notes</option>
-                            <option value="video">Video Lecture (Link)</option>
-                            <option value="quiz">Quiz (Future Update)</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label>Content Type</label>
+                <select name="resource_type" id="res_type_select" onchange="toggleUploadType()" required 
+                        style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    <option value="pdf">PDF / Notes</option>
+                    <option value="video">Video Lecture (Link)</option>
+                </select>
+            </div>
 
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" name="title" class="input-wrapper" placeholder="e.g. Unit 1: Introduction" style="padding: 14px;">
-                </div>
+            <div id="file_input_div" class="form-group" style="margin-bottom: 15px;">
+                <label>Choose PDF File</label>
+                <input type="file" name="file_upload" id="file_upload" accept=".pdf" 
+                       style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
 
-                <div id="fileUploadArea" class="form-group">
-                    <label>Upload PDF File</label>
-                    <input type="file" name="pdf_file" class="input-wrapper" style="padding: 10px;">
-                </div>
+            <div id="url_input_div" class="form-group" style="margin-bottom: 25px;">
+                <label id="url_label">Or Paste Drive Link</label>
+                <input type="url" name="file_url" id="file_url" placeholder="https://..." 
+                       style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
 
-                <div id="linkUploadArea" class="form-group" style="display: none;">
-                    <label>Video URL (YouTube/Drive)</label>
-                    <input type="url" name="video_url" class="input-wrapper" placeholder="https://youtube.com/..." style="padding: 14px;">
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block">Publish Resource</button>
-            </form>
-        </div>
-    </main>
+            <button type="submit" class="btn btn-primary btn-block">Upload Content</button>
+        </form>
+    </div>
 </div>
 
 <script>
-    // Logic to toggle between File and Link
-    document.getElementById('contentType').addEventListener('change', function() {
-        const fileArea = document.getElementById('fileUploadArea');
-        const linkArea = document.getElementById('linkUploadArea');
-        
-        if (this.value === 'video') {
-            fileArea.style.display = 'none';
-            linkArea.style.display = 'block';
-        } else {
-            fileArea.style.display = 'block';
-            linkArea.style.display = 'none';
-        }
-    });
+function toggleUploadType() {
+    var type = document.getElementById('res_type_select').value;
+    var fileDiv = document.getElementById('file_input_div');
+    var urlLabel = document.getElementById('url_label');
+    var fileInput = document.getElementById('file_upload');
+    var urlInput = document.getElementById('file_url');
+
+    if (type === 'video') {
+        fileDiv.style.display = 'none'; 
+        fileInput.required = false; // Video ke liye file zaroori nahi
+        urlInput.required = true;  // Video ke liye link zaroori hai
+        urlLabel.innerText = "YouTube Video Link";
+    } else {
+        fileDiv.style.display = 'block';
+        urlInput.required = false; // PDF ke liye file ya link me se ek chalega
+        urlLabel.innerText = "Or Paste Drive Link (If not uploading file)";
+    }
+}
+// Run on initial load
+toggleUploadType();
 </script>
 {% endblock %}

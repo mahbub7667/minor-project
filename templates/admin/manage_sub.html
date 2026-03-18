@@ -3,54 +3,40 @@
 {% block title %}Manage Subjects - Admin{% endblock %}
 
 {% block content %}
-<div class="dashboard-wrapper">
+<div class="container" style="margin-top: 50px;">
+    <h2>Manage Subjects</h2>
     
-    <aside class="sidebar admin-sidebar">
-        <div class="sidebar-user">
-            <img src="https://cdn-icons-png.flaticon.com/512/2206/2206368.png" alt="Admin Profile">
-            <h4>Admin Control</h4>
-            <span>Superuser</span>
-        </div>
-        <nav class="sidebar-menu">
-            <a href="{{ url_for('admin_dashboard') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-            
-            <a href="{{ url_for('manage_subjects') }}" class="active"><i class="fa-solid fa-folder-tree"></i> Manage Subjects</a>
-            
-            <a href="{{ url_for('upload_content') }}"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Content</a>
-            
-            <a href="#"><i class="fa-solid fa-message"></i> Feedback</a>
-            <a href="{{ url_for('home') }}" class="logout-link"><i class="fa-solid fa-power-off"></i> Logout</a>
-        </nav>
-    </aside>
-    <main class="dashboard-main" style="margin: 0 auto; max-width: 1000px;">
-        <header class="dashboard-header">
-            <h2>Manage <span>Subjects</span></h2>
-            <button class="btn btn-primary" style="float: right;">+ Add New Subject</button>
-        </header>
+    <div class="auth-card" style="margin-bottom: 30px; padding: 20px;">
+        <form action="{{ url_for('manage_subjects') }}" method="POST">
+            <div class="form-group">
+                <input type="text" name="subject_name" placeholder="Subject Name (e.g., Data Structures)" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="subject_code" placeholder="Subject Code (e.g., CS402)" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Subject</button>
+        </form>
+    </div>
 
-        <div class="recent-activity">
-            <table style="width: 100%; border-collapse: collapse;">
-                <thead>
-                    <tr style="text-align: left; border-bottom: 2px solid #eee;">
-                        <th style="padding: 15px;">Subject Name</th>
-                        <th style="padding: 15px;">Code</th>
-                        <th style="padding: 15px;">Total Resources</th>
-                        <th style="padding: 15px;">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 15px;">Data Structures</td>
-                        <td style="padding: 15px;">CSE-401</td>
-                        <td style="padding: 15px;">24</td>
-                        <td style="padding: 15px;">
-                            <a href="#" style="color: blue; margin-right: 10px;">Edit</a>
-                            <a href="#" style="color: red;">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
+    <table class="table" border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr style="background-color: #f4f4f4;">
+                <th style="padding: 10px;">Code</th>
+                <th style="padding: 10px;">Subject Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sub in subjects %}
+            <tr>
+                <td style="padding: 10px;">{{ sub.subject_code }}</td>
+                <td style="padding: 10px;">{{ sub.subject_name }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="2" style="padding: 10px; text-align: center;">No subjects added yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
