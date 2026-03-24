@@ -10,8 +10,21 @@ app.secret_key = "smart_study_secret_key"
 
 # Home Page Route
 @app.route('/')
-def home():
-    return render_template('index.html')
+def home(): 
+    try:
+        # Fetching dynamic counts for the landing page
+        subjects = supabase.table("subjects").select("id", count="exact").execute()
+        resources = supabase.table("resources").select("id", count="exact").execute()
+        
+        sub_count = subjects.count if subjects.count else 0
+        res_count = resources.count if resources.count else 0
+    except Exception as e:
+        print(f"Error fetching landing stats: {e}")
+        sub_count, res_count = 0, 0
+
+    # Ensure this matches your template filename
+    return render_template('index.html', sub_count=sub_count, res_count=res_count)
+
 
 # Register Page Route
 @app.route('/register', methods=['GET', 'POST'])

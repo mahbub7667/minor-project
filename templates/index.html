@@ -1,64 +1,186 @@
 {% extends "base.html" %}
 
-{% block title %}Smart Study Hub | All study resources in one place{% endblock %}
+{% block title %}Smart Study Hub | Fuel Your Future{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+{% endblock %}
 
 {% block content %}
-<section class="hero-section">
-    <div class="container hero-container">
-        <div class="hero-image left-image">
-            <img src="https://img.freepik.com/premium-vector/online-education-illustration-computer-book-coffee-education-icon-concept-white-isolated_138676-630.jpg" alt="Study Book Illustration">
-        </div>
-        
-        <div class="hero-content">
-            <h1 class="hero-title">Smart Study Hub</h1>
-            <p class="hero-subtitle">All study resources in one place</p>
-            <div class="hero-action-buttons">
-                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Register</a>
-                <a href="{{ url_for('login') }}" class="btn btn-outline btn-lg">Login</a>
-            </div>
-        </div>
-        
-        <div class="hero-image right-image">
-            <img src="https://cdn-icons-png.flaticon.com/512/2828/2828096.png" alt="Online Learning Laptop">
-        </div>
+<div class="landing-page-body">
+    <div class="particles-container">
+        <div class="particle p-1"></div>
+        <div class="particle p-2"></div>
+        <div class="particle p-3"></div>
+        <div class="particle p-4"></div>
+        <div class="particle p-5"></div>
     </div>
-</section>
 
-<section class="features-section">
-    <div class="container features-grid">
+    <section id="home" class="hero-section" style="position: relative; overflow: hidden; padding-bottom: 50px;">
+        <div class="hero-bg-blobs">
+            <div class="blob b-1"></div>
+            <div class="blob b-2"></div>
+            <div class="blob b-3"></div>
+        </div>
         
-        <div class="feature-card">
-            <div class="card-icon wrapper-green">
-                <i class="fa-solid fa-file-signature"></i>
-            </div>
-            <h3 class="card-title">Comprehensive Notes</h3>
-            <p class="card-desc">Access detailed subject notes prepared by experts.</p>
-        </div>
+        <div class="container hero-container" style="max-width: 1400px; margin: 0 auto; position: relative;">
+            
+            <div class="hero-grid" style="display: flex !important; align-items: center !important; width: 100% !important; min-height: 90vh !important; position: relative !important; flex-wrap: wrap;">
+                
+                <div class="hero-text-content" style="flex: 1 1 45%; min-width: 320px; position: relative; z-index: 5; padding-right: 40px;">
+                    <h1 class="hero-main-title">
+                        Master Your CSE <br>
+                        <span class="gradient-text-hero">Diploma Journey</span>
+                    </h1>
+                    <p class="hero-description">
+                        One-stop platform for high-quality notes, video lectures, and previous year papers 
+                        specially curated for Diploma students.
+                    </p>
+                    <div class="hero-btn-group">
+                        <a href="{{ url_for('register') }}" class="btn-premium-grad">
+                            <span>Get Started Free</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#features" class="btn-glass-outline">
+                            <span>Explore Features</span>
+                        </a>
+                    </div>
+                    <div class="hero-trust-badges" style="margin-top: 20px;">
+                        <div class="trust-item"><i class="fas fa-user-graduate"></i> 500+ Students</div>
+                        <div class="trust-item"><i class="fas fa-shield-check"></i> 24/7 Access</div>
+                    </div>
+                </div>
 
-        <div class="feature-card">
-            <div class="card-icon wrapper-blue">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-            </div>
-            <h3 class="card-title">Previous Year Questions</h3>
-            <p class="card-desc">Practice with a vast database of PYQs for better exam preparation.</p>
+                </div>
         </div>
+    </section>
 
-        <div class="feature-card">
-            <div class="card-icon wrapper-purple">
-                <i class="fa-solid fa-video"></i>
+    <section id="resources" class="counter-section">
+        <div class="container">
+            <div class="stats-grid-row">
+                <div class="stat-box-card" data-aos="fade-up">
+                    <div class="s-icon-box"><i class="fas fa-book-open"></i></div>
+                    <h3 class="stat-number" data-target="{{ sub_count | default('15') }}">0</h3>
+                    <p>Subjects Covered</p>
+                </div>
+                <div class="stat-box-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="s-icon-box"><i class="fas fa-cloud-arrow-down"></i></div>
+                    <h3 class="stat-number" data-target="{{ res_count | default('40') }}">0</h3>
+                    <p>Resources Available</p>
+                </div>
+                <div class="stat-box-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="s-icon-box"><i class="fas fa-users"></i></div>
+                    <h3 class="stat-number" data-target="500">0</h3>
+                    <p>Active Students</p>
+                </div>
+                <div class="stat-box-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="s-icon-box"><i class="fas fa-award"></i></div>
+                    <h3 class="stat-number" data-target="1000">0</h3>
+                    <p>Downloads Made</p>
+                </div>
             </div>
-            <h3 class="card-title">Video Lectures</h3>
-            <p class="card-desc">Learn complex topics through engaging video tutorials.</p>
         </div>
+    </section>
 
-        <div class="feature-card">
-            <div class="card-icon wrapper-dark">
-                <i class="fa-solid fa-list-check"></i>
+    <section id="features" class="feature-showcase">
+        <div class="container">
+            <div class="section-heading-center" data-aos="fade-down">
+                <span class="section-tag">Everything You Need</span>
+                <h2 class="section-main-title">To Ace Your Exams</h2>
             </div>
-            <h3 class="card-title">Interactive Quizzes</h3>
-            <p class="card-desc">Test your knowledge with topic-wise quizzes and get instant feedback.</p>
+            
+            <div class="features-flex-grid">
+                <div class="f-card-premium" data-aos="fade-up" data-aos-delay="100">
+                    <div class="f-icon-wrap blue"><i class="fas fa-file-pdf"></i></div>
+                    <h3>Premium Notes</h3>
+                    <p>Hand-written and digital notes created by toppers for quick revision.</p>
+                </div>
+                <div class="f-card-premium" data-aos="fade-up" data-aos-delay="200">
+                    <div class="f-icon-wrap purple"><i class="fas fa-video"></i></div>
+                    <h3>Video Lectures</h3>
+                    <p>Hand-picked expert YouTube lectures to clear complex topic doubts.</p>
+                </div>
+                <div class="f-card-premium" data-aos="fade-up" data-aos-delay="300">
+                    <div class="f-icon-wrap green" style="background: #fef3c7; color: #d97706;"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Previous Papers</h3>
+                    <p>Solved question papers with detailed marking schemes and explanations.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-    </div>
-</section>
+    <section id="contact" class="testimonial-section-v2">
+        <div class="container">
+            <div class="section-heading-center" data-aos="fade-down">
+                <span class="section-tag">Student Success</span>
+                <h2 class="section-main-title">What Students Say</h2>
+            </div>
+            <div class="testimonial-row" data-aos="fade-up">
+                <div class="testi-card">
+                    <div class="testi-user">
+                        <img src="https://th.bing.com/th/id/OIP.i63V4GRAbraoqBFlcTQzCgHaHa?w=203&h=203&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Student">
+                        <div class="user-meta">
+                            <h4>Rahul Sharma</h4>
+                            <p>4th Sem CSE Student</p>
+                        </div>
+                    </div>
+                    <p class="testi-text">"This platform saved my semester! The notes are exactly what we need for Diploma exams."</p>
+                </div>
+                <div class="testi-card">
+                    <div class="testi-user">
+                        <img src="https://png.pngtree.com/png-clipart/20190619/original/pngtree-vector-male-student-icon-png-image_3998154.jpg" alt="Student">
+                        <div class="user-meta">
+                            <h4>Sohel Khan</h4>
+                            <p>3rd Sem CSE Student</p>
+                        </div>
+                    </div>
+                    <p class="testi-text">"The video lectures are amazing! Finally understood concepts that teachers couldn't explain."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        const startCounter = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const targetAttr = counter.getAttribute('data-target');
+                    if (!targetAttr) return; 
+                    
+                    const target = +targetAttr;
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target + "+";
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        const counterSection = document.querySelector('.counter-section');
+        if (counterSection) {
+            const observer = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    startCounter();
+                    observer.disconnect(); 
+                }
+            }, { threshold: 0.5 });
+            
+            observer.observe(counterSection);
+        }
+    });
+</script>
 {% endblock %}

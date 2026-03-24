@@ -18,43 +18,41 @@
 </head>
 <body>
 
-    <div class="bg-shape shape-top-left"></div>
-    <div class="bg-shape shape-bottom-right"></div>
-
-    <header class="navbar">
-        <div class="container nav-container">
-            
-            <a href="{{ url_for('home') }}" class="brand-logo">
-                <i class="fa-solid fa-book-open-reader icon-logo"></i>
-                <div class="brand-text">
-                    <span class="brand-title">Smart</span>
-                    <span class="brand-subtitle">Study Hub</span>
-                </div>
-            </a>
-
-            <nav class="nav-menu">
-                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
-                <a href="#" class="nav-link">Features</a>
-                <a href="#" class="nav-link">Resources</a>
-                <a href="#" class="nav-link">Contact</a>
-            </nav>
-
-            <div class="nav-auth">
-                {% if session.get('user_id') %}
-                    <a href="{{ url_for('logout') }}" class="btn btn-outline nav-btn">Logout</a>
-                {% else %}
-                    <a href="{{ url_for('login') }}" class="auth-link login-link">Login</a>
-                    <a href="{{ url_for('register') }}" class="btn btn-primary nav-btn">Register</a>
-                {% endif %}
+    <header class="main-navbar"> <div class="container nav-flex-container">
+        
+        <a href="{{ url_for('home') }}" class="brand-logo">
+            <i class="fa-solid fa-book-open-reader icon-logo"></i>
+            <div class="brand-text">
+                <span class="brand-title">Smart</span>
+                <span class="brand-subtitle">Study Hub</span>
             </div>
+        </a>
 
+        <nav class="nav-menu-wrapper">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="mailto:admin@sshub.co">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-auth">
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('logout') }}" class="btn-logout-small">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="auth-link login-link">Login</a>
+                <a href="{{ url_for('register') }}" class="btn-primary-small">Register</a>
+            {% endif %}
         </div>
-    </header>
 
-    <main style="min-height: 70vh;">
+    </div>
+</header>
+
+    <main class="content-wrapper">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <div class="container flash-messages" style="margin-top: 20px;">
+                <div class="container flash-messages">
                     {% for category, message in messages %}
                         <div class="alert alert-{{ category }}">
                             {{ message }}
@@ -64,27 +62,32 @@
             {% endif %}
         {% endwith %}
 
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 
-    <footer class="footer">
-        <div class="container footer-container">
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand-info">
+                <h3>Smart Study Hub</h3>
+                <p>Empowering Diploma CSE Students with quality resources.</p>
+            </div>
             <div class="footer-links">
                 <a href="#">About Us</a>
-                <a href="#">Terms of Service</a>
                 <a href="#">Privacy Policy</a>
-                <a href="#">FAQs</a>
                 <a href="#">Support</a>
             </div>
             <div class="footer-socials">
                 <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
             </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Smart Study Hub. All rights reserved.
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     {% block scripts %}{% endblock %}
 
 </body>

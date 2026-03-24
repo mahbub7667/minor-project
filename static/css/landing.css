@@ -1,0 +1,422 @@
+/* =========================================
+   ULTRA-PREMIUM LANDING PAGE (FULL ISOLATED)
+   ========================================= */
+
+/* English Comment: Root variables isolated for the landing page body */
+.landing-page-body {
+    --primary-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --gold-grad: linear-gradient(45deg, #ffd700, #ffed4e);
+    --dark-navy: #0f172a;
+    --light-navy: #1e293b;
+    --text-white: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --heading-color: #0f172a; /* Global heading color for light sections */
+    --text-color: #64748b;    /* Global text color for light sections */
+    --white: #ffffff;
+    --bg-light: #f8fafc;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    
+    scroll-behavior: smooth;
+    background: #ffffff;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* 1. PARTICLES & BLOBS (Enhanced) */
+.landing-page-body .particles-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.landing-page-body .particle {
+    position: absolute;
+    background: var(--primary-grad);
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0.2;
+    animation: floatUp 15s infinite linear;
+}
+
+.landing-page-body .p-1 { width: 15px; height: 15px; left: 10%; }
+.landing-page-body .p-2 { width: 25px; height: 25px; left: 30%; animation-delay: 2s; }
+.landing-page-body .p-3 { width: 10px; height: 10px; left: 70%; animation-delay: 5s; }
+.landing-page-body .p-4 { width: 20px; height: 20px; left: 90%; }
+
+@keyframes floatUp {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+    50% { opacity: 0.4; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* --- HERO SECTION --- */
+.landing-page-body .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: var(--dark-navy);
+    padding-top: 100px; /* Space for Navbar */
+    color: var(--text-white);
+    overflow: visible; /* Icons ke liye visible rakha hai */
+}
+
+.landing-page-body .hero-bg-blobs .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 1;
+    opacity: 0.2;
+    animation: moveBlobs 20s infinite alternate;
+}
+
+.landing-page-body .b-1 { width: 400px; height: 400px; background: #6366f1; top: -100px; left: -100px; }
+.landing-page-body .b-2 { width: 350px; height: 350px; background: #a855f7; bottom: -50px; right: -50px; }
+
+@keyframes moveBlobs {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 100px) scale(1.2); }
+}
+
+.landing-page-body .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* HERO TEXT VISIBILITY & GRADEIENT */
+.landing-page-body .hero-main-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--text-white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.landing-page-body .gradient-text-hero {
+    background: var(--gold-grad);
+    -webkit-background-clip: text;
+    background-clip: text; /* Fixes terminal error */
+    -webkit-text-fill-color: transparent;
+}
+
+.landing-page-body .hero-description {
+    font-size: 1.2rem;
+    color: var(--text-muted); /* Nice muted white */
+    max-width: 550px;
+    margin-bottom: 3rem;
+}
+
+.landing-page-body .announcement-badge {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.landing-page-body .pulse-icon {
+    width: 8px; height: 8px; background: #ffd700; border-radius: 50%;
+    box-shadow: 0 0 10px #ffd700; animation: blink 1.5s infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* Hero Buttons */
+.landing-page-body .hero-btn-group { display: flex; gap: 15px; }
+
+.landing-page-body .btn-premium-grad {
+    background: var(--gold-grad);
+    color: var(--dark-navy) !important;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: var(--transition);
+}
+.landing-page-body .btn-premium-grad:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+}
+
+.landing-page-body .btn-glass-outline {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-white) !important;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+/* VISUAL BLOCK (FIXING YELLOW BOX & SHIFTING ICONS RIGHT) */
+.landing-page-body .hero-visual-block {
+    position: relative;
+    display: flex;
+    justify-content: flex-end; /* Shifting visuals far right */
+}
+
+.landing-page-body .mockup-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: transparent !important; /* Yellow background removal */
+}
+
+.landing-page-body .mockup-screen {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5);
+    border: 8px solid rgba(255,255,255,0.05);
+    transform: perspective(1000px) rotateY(-5deg);
+}
+
+.landing-page-body .mockup-screen img { 
+    width: 100%; 
+    display: block; 
+    transition: var(--transition);
+    background: transparent !important; /* Removal here too */
+}
+
+/* Positioning fixed icons over visual image */
+.landing-page-body .floating-icons .f-icon {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background: white;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 10;
+    animation: iconFloat 4s infinite ease-in-out;
+}
+
+/* Individual Icon Positions relative to the image (Shifted to empty right space) */
+.landing-page-body .icon-1 { top: -20px; right: 20px; color: #4f46e5; } /* Book Icon */
+.landing-page-body .icon-2 { top: 40%; right: -25px; color: #a855f7; animation-delay: 1s; } /* Code Icon */
+.landing-page-body .icon-3 { bottom: -10px; right: 120px; color: #f59e0b; animation-delay: 2s; } /* Phone Icon */
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+/* --- STATS SECTION (Restoring Design) --- */
+.landing-page-body .counter-section {
+    padding: 100px 0;
+    background: var(--bg-light); /* Light subtle background */
+    position: relative;
+    z-index: 2;
+}
+
+.landing-page-body .stats-grid-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.landing-page-body .stat-box-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    border: 1px solid #f1f5f9;
+}
+
+.landing-page-body .s-icon-box { font-size: 32px; color: #6366f1; margin-bottom: 20px; }
+.landing-page-body .stat-number { font-size: 42px; font-weight: 800; color: var(--dark-navy); }
+
+/* --- PREMIUM FEATURES SHOWCASE (Restoring Design) --- */
+.landing-page-body .feature-showcase {
+    padding: 120px 0;
+    background: var(--white);
+}
+
+.landing-page-body .section-heading-center { text-align: center; margin-bottom: 60px; }
+.landing-page-body .section-tag { color: #6366f1; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: block; }
+.landing-page-body .section-main-title { font-size: 42px; font-weight: 900; color: var(--dark-navy); }
+
+.landing-page-body .features-flex-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.landing-page-body .f-card-premium {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid #f1f5f9;
+    transition: var(--transition);
+}
+
+.landing-page-body .f-card-premium:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    border-color: #6366f1;
+}
+
+.landing-page-body .f-icon-wrap {
+    width: 65px; height: 65px; border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; margin-bottom: 30px;
+}
+.landing-page-body .f-icon-wrap.blue { background: #eff6ff; color: #3b82f6; }
+.landing-page-body .f-icon-wrap.purple { background: #faf5ff; color: #a855f7; }
+
+/* --- TESTIMONIALS --- */
+.landing-page-body .testi-card {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.landing-page-body .testi-user img { width: 50px; height: 50px; border-radius: 50%; }
+
+/* --- FINAL CTA BANNER --- */
+.landing-page-body .cta-banner-premium {
+    padding: 120px 0;
+    background: var(--white);
+}
+
+.landing-page-body .cta-inner-box {
+    background: var(--primary-grad);
+    border-radius: 30px;
+    padding: 80px 40px;
+    text-align: center;
+    color: var(--text-white);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+}
+
+.landing-page-body .btn-cta-light {
+    background: var(--white);
+    color: var(--primary-color) !important;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 800;
+}
+
+/* Global Reset overrides within the wrapper for safety */
+.landing-page-body .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+@media (max-width: 992px) {
+    .landing-page-body .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .landing-page-body .hero-visual-block { justify-content: center; }
+    .landing-page-body .icon-2 { right: 0; }
+}
+/* A. GLOBAL SMOOTH BEHAVIOR */
+html {
+    scroll-behavior: smooth !important; /* Goal 1: Makhan scrolling */
+    background-color: #f8fafc; /* Page Background (Slightly warm white) */
+    font-family: 'Poppins', sans-serif !important;
+}
+/* =========================================
+   ONLY SHIFTING IMAGE TO RIGHT (NO DESIGN CHANGE)
+   ========================================= */
+
+/* English Comment: 1. Adjusting the grid to give more space on the right side */
+.landing-page-body .hero-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1.2fr !important; /* Text area 1 part, Image area 1.2 parts */
+    gap: 50px !important;
+    align-items: center !important;
+}
+
+/* English Comment: 2. Forcing the visual block to stick to the right edge */
+.landing-page-body .hero-visual-block {
+    display: flex !important;
+    justify-content: flex-end !important; /* Pushes content to the right edge of its column */
+    width: 100% !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* English Comment: 3. Final alignment correction for the mockup wrapper */
+.landing-page-body .mockup-wrapper {
+    margin-left: auto !important; /* Ensures it sticks to the right */
+    margin-right: 0 !important;
+    background: transparent !important; /* Safety check for yellow box */
+}
+/* =========================================
+   DIRECT FAILLSAFE FORCE-SHIFT TO RIGHT
+   (Append this to the VERY BOTTOM of landing.css)
+   ========================================= */
+
+/* English Comment: 1. Making the whole section a reference point so image is absolutely placed within it */
+.landing-page-body .hero-section {
+    position: relative !important;
+}
+
+/* English Comment: 2. This is the code that forces the image to move to the far right space */
+.landing-page-body .hero-visual-block {
+    /* ukhaad kar section se absolute karo */
+    position: absolute !important;
+    
+    /* Center it vertically in the section */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    
+    /* Align it to the very right edge of the section */
+    right: 0 !important;
+    
+    /* CRITICAL: Force large negative margin-right to push into empty space beyond container */
+    margin-right: -25vw !important; /* Adjust if too much or too little */
+    
+    /* Prevent text content from interfering with its right alignment */
+    z-index: 10 !important;
+    
+    /* Cleanup previous constraints if any */
+    display: flex !important;
+    justify-content: flex-end !important;
+    max-width: none !important;
+}
+
+/* Cleanup text squishing due to layout changes */
+.landing-page-body .hero-text-content {
+    max-width: 550px !important;
+}
+
+/* Cleanup for floating icons within the mockup wrapper */
+.landing-page-body .mockup-wrapper {
+    position: relative !important;
+    width: 100%;
+    max-width: 500px; /* Force small image so it doesn't squish */
+}
+
+/* MOBILE FALLBACK (Don't break mobile layout) */
+@media (max-width: 1100px) {
+    .landing-page-body .hero-visual-block {
+        position: relative !important;
+        top: auto !important;
+        transform: none !important;
+        right: auto !important;
+        margin-right: 0 !important;
+        justify-content: center !important;
+        margin-top: 50px;
+    }
+    .landing-page-body .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .landing-page-body .hero-text-content {
+        margin: 0 auto !important;
+    }
+}

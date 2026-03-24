@@ -1,53 +1,113 @@
 {% extends "base.html" %}
 
-{% block title %}Student Dashboard - Smart Study Hub{% endblock %}
+{% block title %}Student Hub - Smart Study Hub{% endblock %}
 
 {% block content %}
-<div class="container" style="margin-top: 40px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-        <h2><i class="fa-solid fa-graduation-cap"></i> My Study Resources</h2>
-        <span class="badge" style="background: #4a90e2; color: white; padding: 5px 15px; border-radius: 20px;">
-            Welcome, {{ session.get('user_name') }}
-        </span>
-    </div>
-
-    <div class="resources-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;">
-        {% for res in resources %}
-        <div class="resource-card" style="background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; border: 1px solid #eee;">
-            
-            <div style="padding: 10px 15px; background: #f8f9fa; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;">
-                <small style="color: #666; font-weight: bold;">{{ res.subjects.subject_code }}</small>
-                <span style="font-size: 12px; color: #4a90e2;">{{ res.subjects.subject_name }}</span>
+<div class="premium-dashboard-root">
+    
+    <div class="glass-background-blobs"></div> <div class="dashboard-app-layout">
+        
+        <aside class="app-sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+                <span>SS HUB</span>
             </div>
 
-            <div style="padding: 20px;">
-                <h4 style="margin-bottom: 10px; color: #333;">{{ res.title }}</h4>
-                
-                <div style="margin-bottom: 20px; font-size: 24px;">
-                    {% if res.type == 'pdf' %}
-                        <i class="fa-solid fa-file-pdf" style="color: #e74c3c;"></i> <small style="font-size: 14px; color: #666;">PDF Notes</small>
-                    {% else %}
-                        <i class="fa-solid fa-video" style="color: #f1c40f;"></i> <small style="font-size: 14px; color: #666;">Video Lecture</small>
-                    {% endif %}
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-link active"><i class="fa-solid fa-house-chimney"></i> Dashboard</a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-book-open-reader"></i> My Notes</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-video"></i> Video Lectures</a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-bookmark"></i> Saved Items</a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="{{ url_for('logout') }}" class="logout-pill">
+                    <i class="fa-solid fa-power-off"></i> <span>Log Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            
+            <header class="app-top-bar">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search resources, subjects, or notes...">
                 </div>
 
-                {% if res.type == 'pdf' %}
-                    <a href="{{ res.file_url }}" target="_blank" class="btn btn-primary btn-block" style="text-align: center; display: block; text-decoration: none;">
-                        <i class="fa-solid fa-download"></i> View / Download
-                    </a>
-                {% else %}
-                    <a href="{{ res.file_url }}" target="_blank" class="btn btn-outline btn-block" style="text-align: center; display: block; text-decoration: none; border: 1px solid #4a90e2; color: #4a90e2;">
-                        <i class="fa-solid fa-play"></i> Watch Video
-                    </a>
-                {% endif %}
+                <div class="profile-section">
+                    <div class="notification-bell"><i class="fa-regular fa-bell"></i><span class="dot"></span></div>
+                    <div class="user-profile-pill">
+                        <div class="avatar-box">{{ session.get('user_name')[:1].upper() }}</div>
+                        <div class="user-info-text">
+                            <span class="u-name">{{ session.get('user_name') }}</span>
+                            <span class="u-role">Student</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <section class="welcome-hero">
+                <div class="hero-text">
+                    <h1>Hey <span>{{ session.get('user_name') }}</span>, What's on your mind today? ✨</h1>
+                    <p>Access your curated study materials and track your progress in one place.</p>
+                </div>
+            </section>
+
+            <section class="stats-grid">
+                <div class="s-card blue">
+                    <div class="s-icon"><i class="fa-solid fa-file-lines"></i></div>
+                    <div class="s-info"><h3>{{ resources|length }}</h3><p>Total Files</p></div>
+                </div>
+                <div class="s-card purple">
+                    <div class="s-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="s-info"><h3>Active</h3><p>Learning Status</p></div>
+                </div>
+                <div class="s-card orange">
+                    <div class="s-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="s-info"><h3>New</h3><p>Recent Updates</p></div>
+                </div>
+            </section>
+
+            <div class="section-title-row">
+                <h2>Featured Learning Materials</h2>
+                <a href="#" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-        </div>
-        {% else %}
-        <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
-            <i class="fa-solid fa-folder-open" style="font-size: 50px; color: #ccc;"></i>
-            <p style="margin-top: 15px; color: #888;">No resources uploaded yet. Check back later!</p>
-        </div>
-        {% endfor %}
+
+            <div class="materials-grid">
+                {% for res in resources %}
+                <div class="premium-res-card">
+                    <div class="card-glass-layer"></div>
+                    <div class="card-top">
+                        <span class="sub-badge">{{ res.subjects.subject_code }}</span>
+                        <div class="type-icon-circle {% if res.type == 'pdf' %}pdf-mode{% else %}video-mode{% endif %}">
+                            <i class="fa-solid {% if res.type == 'pdf' %}fa-file-pdf{% else %}fa-play-circle{% endif %}"></i>
+                        </div>
+                    </div>
+                    
+                    <h3 class="res-title">{{ res.title }}</h3>
+                    <p class="res-subject">{{ res.subjects.subject_name }}</p>
+
+                    <div class="card-footer">
+                        <div class="meta-info">
+                            <i class="fa-regular fa-calendar"></i> <span>2026</span>
+                        </div>
+                        <a href="{{ res.file_url }}" target="_blank" class="action-btn-premium">
+                            {% if res.type == 'pdf' %}View Notes{% else %}Watch Video{% endif %}
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="empty-state-v3">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" alt="Empty">
+                    <h3>No resources found yet.</h3>
+                    <p>Ask your admin to upload some study materials!</p>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
     </div>
 </div>
 {% endblock %}
