@@ -1,0 +1,440 @@
+/* =========================================
+   1. Variables 
+   ========================================= */
+   :root {
+    --primary-color: #4f46e5;      /* Modern Indigo */
+    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    --heading-color: #0f172a;      /* Deep Slate */
+    --text-color: #64748b;         /* Muted Slate */
+    --bg-color: #f8fafc;           /* Ultra light gray/blue background */
+    --white: #ffffff;
+    --card-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+    --hover-shadow: 0 30px 60px rgba(79, 70, 229, 0.15);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================
+   2. RESET & GLOBAL STYLES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* =========================================
+   3. MAIN NAVBAR
+   ========================================= */
+.main-navbar {
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.nav-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+/* BRAND LOGO SECTION */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.icon-logo, .brand-title {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text; 
+    background-clip: text;         /* Standard property added */
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.brand-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--heading-color);
+}
+
+.brand-subtitle {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+/* CENTER LINKS */
+.nav-menu-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    color: var(--heading-color);
+    font-weight: 600;
+    font-size: 15px;
+    transition: var(--transition);
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--primary-gradient);
+    transition: var(--transition);
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+/* RIGHT AUTH BUTTONS */
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.auth-link {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--heading-color);
+}
+
+/* =========================================
+   4. PREMIUM BUTTONS & FLASH MESSAGES
+   ========================================= */
+.btn-primary-small {
+    background: var(--primary-gradient);
+    color: white !important;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.15);
+    transition: var(--transition);
+}
+
+.btn-primary-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(79, 70, 229, 0.25);
+}
+
+.btn-logout-small {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444 !important;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.flash-messages {
+    position: relative;
+    z-index: 10;
+    margin-top: 20px;
+}
+
+.alert {
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.alert-success { background: #ecfdf5; color: #059669; border: 1px solid #d1fae5; }
+.alert-danger { background: #fef2f2; color: #dc2626; border: 1px solid #fee2e2; }
+
+/* =========================================
+   5. SIMPLE FOOTER
+   ========================================= */
+.footer {
+    border-top: 1px solid #e2e8f0;
+    padding: 40px 0;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-links a {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-socials a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--heading-color);
+}
+
+.footer-socials a:hover {
+    background: var(--primary-gradient);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   6. AUTHENTICATION (LOGIN/REGISTER) FORMS
+   ========================================= */
+.auth-section {
+    padding: 60px 0 100px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 80vh;
+}
+
+.auth-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    padding: 40px 45px;
+    border-radius: 24px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(255, 255, 255, 1);
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    animation: floatUp 0.6s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(40px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header h2 {
+    font-size: 32px;
+    color: var(--heading-color);
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.auth-header p {
+    color: var(--text-color);
+    font-size: 15px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--heading-color);
+    margin-left: 5px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 18px;
+    color: #94a3b8;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    font-size: 15px;
+    color: var(--heading-color);
+    background: #f8fafc;
+    transition: var(--transition);
+    outline: none;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--primary-color);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.input-wrapper input:focus + i {
+    color: var(--primary-color);
+}
+
+.btn-block {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 14px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.auth-footer a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+/* =========================================
+   7. BASE RESET & PARTICLES (From Part 2)
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: #2d3748;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Particles Animation */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 50%;
+    animation: float 20s infinite linear;
+}
+
+.particle-1 { width: 20px; height: 20px; top: 20%; left: 10%; animation-delay: 0s; }
+.particle-2 { width: 15px; height: 15px; top: 60%; right: 15%; animation-delay: 5s; }
+.particle-3 { width: 25px; height: 25px; top: 80%; left: 20%; animation-delay: 10s; }
+.particle-4 { width: 18px; height: 18px; bottom: 20%; right: 25%; animation-delay: 15s; }
+.particle-5 { width: 12px; height: 12px; top: 40%; left: 80%; animation-delay: 2s; }
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+/* =========================================
+   8. FOOTER OVERRIDE (Final Part)
+   ========================================= */
+.footer-bottom {
+    text-align: center !important;
+    display: block !important;
+    width: 100%;
+}

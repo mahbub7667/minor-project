@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -20,14 +20,13 @@
 
     <header class="main-navbar"> <div class="container nav-flex-container">
         
-        <a href="{{ url_for('home') }}" class="brand-logo">
-            <i class="fa-solid fa-book-open-reader icon-logo"></i>
-            <div class="brand-text">
-                <span class="brand-title">Smart</span>
-                <span class="brand-subtitle">Study Hub</span>
+       <a href="{{ url_for('home') }}" class="brand-logo" style="display: flex !important; align-items: center !important; gap: 12px !important; margin-left: -25px !important; text-decoration: none !important;">
+            <i class="fa-solid fa-book-open-reader icon-logo" style="font-size: 36px !important; color: #4f46e5 !important;"></i>
+            <div class="brand-text" style="display: flex !important; flex-direction: column !important; justify-content: center !important; line-height: 1.1 !important;">
+                <span class="brand-title" style="font-size: 26px !important; font-weight: 800 !important; color: #1e293b !important;">Smart</span>
+                <span class="brand-subtitle" style="font-size: 14px !important; font-weight: 600 !important; color: #64748b !important; letter-spacing: 1px !important;">Study Hub</span>
             </div>
         </a>
-
         <nav class="nav-menu-wrapper">
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>

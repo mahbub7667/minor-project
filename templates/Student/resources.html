@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}Resources - Smart Study Hub{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student-dash.css') }}">
+{% endblock %}
+
 
 {% block content %}
 <div class="dashboard-wrapper">

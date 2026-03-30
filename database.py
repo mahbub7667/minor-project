@@ -9,7 +9,6 @@ load_dotenv()
 supabase_url = os.getenv("SUPABASE_URL")
 supabase_key = os.getenv("SUPABASE_KEY")
 
-# Create the Supabase client instance
 # This 'supabase' object will be used in app.py for database operations
 if not supabase_url or not supabase_key:
     print("Error: Missing Supabase credentials in environment variables.")

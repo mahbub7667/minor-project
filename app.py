@@ -22,7 +22,6 @@ def home():
         print(f"Error fetching landing stats: {e}")
         sub_count, res_count = 0, 0
 
-    # Ensure this matches your template filename
     return render_template('index.html', sub_count=sub_count, res_count=res_count)
 
 
@@ -60,7 +59,7 @@ def register():
             
     return render_template('register.html')
 
-# Updated LOGIN Page Route (Replaces your old simple route)
+# LOGIN Page Route 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':

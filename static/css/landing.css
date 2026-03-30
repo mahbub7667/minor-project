@@ -1,8 +1,362 @@
 /* =========================================
-   ULTRA-PREMIUM LANDING PAGE (FULL ISOLATED)
+   1. ABSTRACT BACKGROUND GLOWS
+   ========================================= */
+.bg-shape {
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+}
+
+.shape-top-left {
+    width: 400px;
+    height: 400px;
+    background: #f5f5f6;
+    top: -150px;
+    left: -150px;
+}
+
+.shape-bottom-right {
+    width: 500px;
+    height: 500px;
+    background: #f3f0f7;
+    bottom: 50px;
+    right: -200px;
+}
+
+/* =========================================
+   2. HERO SECTION
+   ========================================= */
+.hero-section {
+    padding: 100px 0 120px 0;
+    text-align: center;
+    position: relative;
+}
+
+.hero-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+/* Gradient Text Effect */
+.hero-title span {
+    background: var(--primary-gradient);
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.hero-action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Floating Animation for Images */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.hero-image img {
+    width: 320px;
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));
+}
+
+.left-image img { animation-delay: 0s; }
+.right-image img { animation-delay: 3s; width: 350px;}
+
+/* =========================================
+   3. FEATURES SECTION (GLASS CARDS)
+   ========================================= */
+.features-section {
+    padding: 0 0 100px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 40px 30px;
+    border-radius: 24px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(255, 255, 255, 1);
+    transition: var(--transition);
+    text-align: left;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--hover-shadow);
+    background: var(--white);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 25px;
+    transition: var(--transition);
+}
+
+.feature-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+/* Vibrant Icon Colors */
+.wrapper-green { background: #dcfce7; color: #16a34a; }
+.wrapper-blue { background: #dbeafe; color: #2563eb; }
+.wrapper-purple { background: #f3e8ff; color: #9333ea; }
+.wrapper-dark { background: #f1f5f9; color: #475569; }
+
+.card-title {
+    color: var(--heading-color);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.card-desc {
+    font-size: 15px;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+/* =========================================
+   4. ALTERNATIVE HERO SECTION (From Part 2)
+   ========================================= */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+}
+
+.hero-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    animation: blob 15s infinite;
+}
+
+.blob-1 { width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s; }
+.blob-2 { width: 400px; height: 400px; bottom: 20%; right: 10%; animation-delay: 5s; }
+.blob-3 { width: 250px; height: 250px; top: 50%; right: 20%; animation-delay: 10s; }
+
+@keyframes blob {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(90deg); }
+    50% { transform: scale(0.9) rotate(180deg); }
+    75% { transform: scale(1.05) rotate(270deg); }
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+/* =========================================
+   5. HERO SUBTITLE, BUTTONS & ANIMATIONS (Final Part)
+   ========================================= */
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+}
+
+.badge-new {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.btn-main-grad {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #2d3748;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 30px rgba(255,215,0,0.4);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-main-grad:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255,215,0,0.6);
+}
+
+.btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-white:hover {
+    background: white;
+    color: #667eea;
+    transform: translateY(-2px);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.95rem;
+}
+
+.stat-item strong {
+    color: #ffd700;
+}
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-mockup {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+}
+
+.mockup-img {
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+    transform: perspective(1000px) rotateX(5deg);
+    transition: all 0.5s ease;
+}
+
+.mockup-glow {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    border-radius: 28px;
+    filter: blur(20px);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.floating-elements {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+}
+
+.float-el {
+    position: absolute;
+    opacity: 0.6;
+    animation: floatAround 6s infinite ease-in-out;
+}
+/* =========================================
+   LANDING PAGE (FULL ISOLATED)
    ========================================= */
 
-/* English Comment: Root variables isolated for the landing page body */
 .landing-page-body {
     --primary-grad: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
     --gold-grad: linear-gradient(45deg, #ffd700, #ffed4e);
@@ -340,7 +694,6 @@ html {
     align-items: center !important;
 }
 
-/* English Comment: 2. Forcing the visual block to stick to the right edge */
 .landing-page-body .hero-visual-block {
     display: flex !important;
     justify-content: flex-end !important; /* Pushes content to the right edge of its column */
@@ -349,7 +702,6 @@ html {
     z-index: 10 !important;
 }
 
-/* English Comment: 3. Final alignment correction for the mockup wrapper */
 .landing-page-body .mockup-wrapper {
     margin-left: auto !important; /* Ensures it sticks to the right */
     margin-right: 0 !important;
@@ -359,13 +711,10 @@ html {
    DIRECT FAILLSAFE FORCE-SHIFT TO RIGHT
    (Append this to the VERY BOTTOM of landing.css)
    ========================================= */
-
-/* English Comment: 1. Making the whole section a reference point so image is absolutely placed within it */
 .landing-page-body .hero-section {
     position: relative !important;
 }
 
-/* English Comment: 2. This is the code that forces the image to move to the far right space */
 .landing-page-body .hero-visual-block {
     /* ukhaad kar section se absolute karo */
     position: absolute !important;
