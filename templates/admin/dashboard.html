@@ -64,17 +64,21 @@
             <div class="recent-activity">
                 <h3>Pending Content Approval</h3>
                 <div class="resource-list">
+                    {% for item in pending_resources %}
                     <div class="resource-item">
                         <i class="fa-solid fa-clock-rotate-left"></i>
                         <div class="resource-details">
-                            <p class="resource-name">Microprocessor Notes.pdf</p>
-                            <p class="resource-meta">Uploaded by: Prof. Verma</p>
+                            <p class="resource-name">{{ item.title }}</p>
+                            <p class="resource-meta">Type: {{ item.type | upper }}</p>
                         </div>
                         <div class="admin-btns">
-                            <a href="#" class="btn-approve">Approve</a>
-                            <a href="#" class="btn-reject">Reject</a>
+                            <a href="{{ url_for('approve_resource', resource_id=item.id) }}" class="btn-approve">Approve</a>
+                            <a href="{{ url_for('delete_resource', resource_id=item.id) }}" class="btn-reject">Reject</a>
                         </div>
                     </div>
+                    {% else %}
+                    <p style="padding: 15px; color: #64748b;">No pending approvals right now.</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -96,26 +100,29 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for item in resources %}
                         <tr style="border-bottom: 1px solid #edf2f7;">
-                            <td style="padding: 15px; font-weight: 500;">Binary Search Tree.pdf</td>
-                            <td style="padding: 15px;"><span class="badge-pdf">PDF</span></td>
-                            <td style="padding: 15px;">Data Structures</td>
-                            <td style="padding: 15px; color: #64748b;">14 Mar 2026</td>
+                            <td style="padding: 15px; font-weight: 500;">{{ item.title }}</td>
+                            
                             <td style="padding: 15px;">
-                                <button class="action-btn edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
+                                {% if item.type == 'pdf' %}
+                                    <span class="badge-pdf">PDF</span>
+                                {% else %}
+                                    <span class="badge-video">VIDEO</span>
+                                {% endif %}
+                            </td>
+                            
+                            <td style="padding: 15px;">{{ item.subject_id }}</td>
+                            <td style="padding: 15px; color: #64748b;">{{ item.uploaded_at[:10] if item.uploaded_at else 'Recent' }}</td>
+                            <td style="padding: 15px;">
+                                <a href="{{ url_for('delete_resource', resource_id=item.id) }}" class="action-btn delete"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
-                        <tr style="border-bottom: 1px solid #edf2f7;">
-                            <td style="padding: 15px; font-weight: 500;">Scheduling Algos</td>
-                            <td style="padding: 15px;"><span class="badge-video">VIDEO</span></td>
-                            <td style="padding: 15px;">OS</td>
-                            <td style="padding: 15px; color: #64748b;">12 Mar 2026</td>
-                            <td style="padding: 15px;">
-                                <button class="action-btn edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button class="action-btn delete"><i class="fa-solid fa-trash"></i></button>
-                            </td>
+                        {% else %}
+                        <tr>
+                            <td colspan="5" style="padding: 15px; text-align: center;">No resources uploaded yet.</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
