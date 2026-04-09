@@ -1,4 +1,5 @@
 import os
+from werkzeug.utils import secure_filename
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -125,7 +126,10 @@ def student_resources():
 
 @app.route('/admin/dashboard')
 def admin_dashboard():
-    return render_template('admin/dashboard.html')
+    pending_data = supabase.table('resources').select('*').eq('status', 'pending').execute().data
+    approved_data = supabase.table('resources').select('*').eq('status', 'approved').execute().data
+    
+    return render_template('admin/dashboard.html', pending_resources=pending_data, resources=approved_data)
 
 # Route to handle adding and viewing subjects (Admin only)
 @app.route('/admin/manage-subjects', methods=['GET', 'POST'])
@@ -166,6 +170,7 @@ def manage_subjects():
 #Admin Upload Route
 @app.route('/admin/upload', methods=['GET', 'POST'])
 def upload_content():
+    # Admin session check
     if 'user_role' not in session or session['user_role'] != 'admin':
         return redirect(url_for('login'))
 
@@ -173,44 +178,39 @@ def upload_content():
         title = request.form.get('title')
         res_type = request.form.get('resource_type')
         subject_id = request.form.get('subject_id')
-        file_url = request.form.get('file_url') # Manual link if provided
+        file_url = request.form.get('file_url') 
         
-        # 1. Handle File Upload to Supabase Storage
+        # Upload file to Supabase Storage bucket
         file = request.files.get('file_upload')
         
         if file and file.filename != '':
             try:
-                # Create a unique filename using timestamp
                 filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{file.filename}"
                 file_path = f"notes/{filename}"
-                
-                # Read file content
                 file_content = file.read()
                 
-                # Upload to Supabase Storage Bucket 'study-material'
                 storage_response = supabase.storage.from_("study-material").upload(
                     path=file_path,
                     file=file_content,
                     file_options={"content-type": file.content_type}
                 )
                 
-                # Get the Public URL of the uploaded file
                 public_url_res = supabase.storage.from_("study-material").get_public_url(file_path)
-                file_url = public_url_res # Use this URL for database
-                
+                file_url = public_url_res 
                 print(f"File uploaded to storage: {file_url}")
                 
             except Exception as storage_err:
                 print(f"Storage Error: {storage_err}")
                 return f"Failed to upload file to storage: {storage_err}"
 
-        # 2. Insert into Database
+        # Insert data into resources table
         try:
             supabase.table("resources").insert({
                 "title": title,
                 "type": res_type,
                 "subject_id": subject_id,
-                "file_url": file_url
+                "file_url": file_url,
+                "status": "approved"  # Added this line to show in dashboard
             }).execute()
             
             return redirect(url_for('admin_dashboard'))
@@ -218,7 +218,7 @@ def upload_content():
             print(f"Database Error: {db_err}")
             return f"Failed to save to database: {db_err}"
 
-    # Fetch subjects for dropdown
+    # Fetch subjects for the dropdown menu
     sub_response = supabase.table("subjects").select("*").execute()
     return render_template('admin/upload.html', subjects=sub_response.data)
 

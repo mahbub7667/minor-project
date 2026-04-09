@@ -58,6 +58,7 @@
 /* =========================================
    2. SIDEBAR DESIGN
    ========================================= */
+   
 .app-sidebar {
     width: 280px;
     background: var(--sidebar-bg);
@@ -90,6 +91,7 @@
 }
 
 .sidebar-nav { flex: 1; }
+
 
 .nav-link {
     display: flex;

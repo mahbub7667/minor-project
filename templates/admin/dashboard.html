@@ -72,8 +72,8 @@
                             <p class="resource-meta">Type: {{ item.type | upper }}</p>
                         </div>
                         <div class="admin-btns">
-                            <a href="{{ url_for('approve_resource', resource_id=item.id) }}" class="btn-approve">Approve</a>
-                            <a href="{{ url_for('delete_resource', resource_id=item.id) }}" class="btn-reject">Reject</a>
+                            <a href="#" class="btn-approve">Approve</a>
+                            <a href="#" class="btn-reject">Reject</a>
                         </div>
                     </div>
                     {% else %}
@@ -115,7 +115,7 @@
                             <td style="padding: 15px;">{{ item.subject_id }}</td>
                             <td style="padding: 15px; color: #64748b;">{{ item.uploaded_at[:10] if item.uploaded_at else 'Recent' }}</td>
                             <td style="padding: 15px;">
-                                <a href="{{ url_for('delete_resource', resource_id=item.id) }}" class="action-btn delete"><i class="fa-solid fa-trash"></i></a>
+                                <a href="#" class="action-btn delete"><i class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
                         {% else %}

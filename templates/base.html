@@ -15,6 +15,29 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
     {% block extra_css %}{% endblock %}
+    <style>
+    /* Navbar Hover Effect - BULLETPROOF */
+    nav a {
+        position: relative !important;
+        text-decoration: none !important;
+        padding-bottom: 5px !important;
+    }
+
+    nav a::after {
+        content: '' !important;
+        position: absolute !important;
+        width: 0 !important;
+        height: 2px !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        background-color: #3b82f6 !important; /* Blue color ki line */
+        transition: width 0.3s ease-in-out !important;
+    }
+
+    nav a:hover::after {
+        width: 100% !important;
+    }
+</style>
 </head>
 <body>
 
@@ -29,10 +52,10 @@
         </a>
         <nav class="nav-menu-wrapper">
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="mailto:admin@sshub.co">Contact</a></li>
+                <a href="{{ url_for('home') }}#home">Home</a>
+                <a href="{{ url_for('home') }}#features">Features</a>
+                <a href="{{ url_for('home') }}#resources">Resources</a>
+                <a href="{{ url_for('home') }}#contact">Contact</a>
             </ul>
         </nav>
 

@@ -134,8 +134,8 @@ a {
     height: 2px;
     bottom: 0;
     left: 0;
-    background: var(--primary-gradient);
-    transition: var(--transition);
+    background-color: #3b82f6; 
+    transition: width 0.3s ease-in-out;
 }
 
 .nav-links li a:hover::after {
@@ -437,4 +437,8 @@ body {
     text-align: center !important;
     display: block !important;
     width: 100%;
+}
+/* Enables smooth scrolling across the entire website */
+html {
+    scroll-behavior: smooth;
 }
